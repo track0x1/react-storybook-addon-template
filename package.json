@@ -1,10 +1,10 @@
 {
-  "name": "@kadira/react-storybook-addon-info",
+  "name": "react-storybook-addon-template",
   "version": "3.0.10",
-  "description": "A React Storybook addon to show additional information for your stories.",
+  "description": "A React Storybook addon to show additional information for your stories and template them.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kadirahq/react-storybook-addon-info.git"
+    "url": "https://github.com/track0x1/react-storybook-addon-template.git"
   },
   "license": "MIT",
   "scripts": {

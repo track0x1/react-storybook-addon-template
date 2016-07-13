@@ -2,7 +2,7 @@ import React from 'react';
 import MTRC from 'markdown-to-react-components';
 import PropTable from './PropTable';
 import Node from './Node';
-import {H1, H2, H3, H4, H5, H6, Code, Pre, P, UL, A, LI} from './markdown';
+import { H1, H2, H3, H4, H5, H6, Code, Pre, P, UL, A, LI } from './markdown';
 import { baseFonts } from './theme';
 
 MTRC.configure({
@@ -17,10 +17,13 @@ MTRC.configure({
   p: P,
   a: A,
   li: LI,
-  ul: UL
+  ul: UL,
 });
 
 const stylesheet = {
+  container: {
+    margin: '18px 18px 0 18px',
+  },
   link: {
     base: {
       fontFamily: 'sans-serif',
@@ -50,13 +53,10 @@ const stylesheet = {
     overflow: 'auto',
   },
   infoBody: {
-    fontSize: "16px",
-  },
-  infoBody: {
     ...baseFonts,
     fontWeight: 300,
     lineHeight: 1.45,
-    fontSize: 15,
+    fontSize: '16px',
   },
   infoContent: {
     marginBottom: 0,
@@ -76,7 +76,7 @@ const stylesheet = {
     body: {
       borderBottom: '1px solid #eee',
       marginBottom: 10,
-    }
+    },
   },
   source: {
     h1: {
@@ -84,17 +84,17 @@ const stylesheet = {
       padding: '0 0 5px 0',
       fontSize: 25,
       borderBottom: '1px solid #EEE',
-    }
+    },
   },
   propTableHead: {
-    margin: '20px 0 0 0'
+    margin: '20px 0 0 0',
   },
-}
+};
 
 export default class Story extends React.Component {
   constructor(...args) {
     super(...args);
-    this.state = {open: false};
+    this.state = { open: false };
   }
 
   render() {
@@ -114,16 +114,16 @@ export default class Story extends React.Component {
 
   _renderInline() {
     return (
-      <div>
-        <div style={stylesheet.infoPage}>
+      <div style={stylesheet.container} className="storybook-template">
+        <div className="storybook-template__story-header" style={stylesheet.infoPage}>
           <div style={stylesheet.infoBody} >
             { this._getInfoHeader() }
           </div>
         </div>
-        <div>
+        <div className="storybook-template__story">
             { this._renderStory() }
         </div>
-        <div style={stylesheet.infoPage}>
+        <div className="storybook-template__story-info" style={stylesheet.infoPage}>
           <div style={stylesheet.infoBody} >
             { this._getInfoContent() }
             { this._getSourceCode() }
@@ -138,21 +138,21 @@ export default class Story extends React.Component {
     const linkStyle = {
       ...stylesheet.link.base,
       ...stylesheet.link.topRight,
-    }
+    };
     const infoStyle = Object.assign({}, stylesheet.info);
     if (!this.state.open) {
       infoStyle.display = 'none';
     }
 
     const openOverlay = () => {
-      this.setState({open: true});
+      this.setState({ open: true });
       return false;
-    }
+    };
 
     const closeOverlay = () => {
-      this.setState({open: false});
+      this.setState({ open: false });
       return false;
-    }
+    };
 
     return (
       <div>
@@ -201,7 +201,7 @@ export default class Story extends React.Component {
     }
     const source = lines.map(s => s.slice(padding)).join('\n');
     return (
-      <div style={stylesheet.infoContent}>
+      <div className="storybook-template__story-info-content" style={stylesheet.infoContent}>
         {MTRC(source).tree}
       </div>
     );
@@ -213,7 +213,7 @@ export default class Story extends React.Component {
     }
 
     return (
-      <div>
+      <div className="storybook-template__story-info-source">
         <h1 style={stylesheet.source.h1}>Story Source</h1>
         <Pre>
         {React.Children.map(this.props.children, (root, idx) => (
@@ -270,7 +270,7 @@ export default class Story extends React.Component {
 
     const propTables = array.map(function (type, idx) {
       return (
-        <div key={idx}>
+        <div className="storybook-template__story-info-props" key={idx}>
           <h2 style={stylesheet.propTableHead}>"{type.displayName || type.name}" Component</h2>
           <PropTable type={type} />
         </div>
@@ -287,7 +287,6 @@ export default class Story extends React.Component {
         {propTables}
       </div>
     );
-    return ;
   }
 }
 
@@ -304,4 +303,5 @@ Story.defaultProps = {
   showInline: false,
   showHeader: true,
   showSource: true,
+  propTables: false,
 }

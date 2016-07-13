@@ -3,7 +3,7 @@ import Button from './Button';
 import { storiesOf, action } from '@kadira/storybook';
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -17,10 +17,10 @@ storiesOf('Button')
         </p>
       </div>
     ),
-  );
+  )
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage (inline info)',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -30,7 +30,7 @@ storiesOf('Button')
   );
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage (disable source)',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -40,7 +40,7 @@ storiesOf('Button')
   );
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage (no header)',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -50,7 +50,7 @@ storiesOf('Button')
   );
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage (no prop tables)',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -60,7 +60,7 @@ storiesOf('Button')
   );
 
 storiesOf('Button')
-  .addWithInfo(
+  .addWithTemplate(
     'simple usage (custom propTables)',
     `
       This is the basic usage with the button with providing a label to show the text.
@@ -70,7 +70,7 @@ storiesOf('Button')
 
       ~~~js
       storiesOf('Button')
-        .addWithInfo(
+        .addWithTemplate(
           'simple usage (custom propTables)',
           <info>,
           <storyFn>,

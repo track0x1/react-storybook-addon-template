@@ -1,5 +1,10 @@
 # Change Log
 
+### v3.1.0
+
+* Initial changes to allow simpler usage without polluting stories with markdown.
+* Add classes for easy targeting of elements in the template so you can theme them yourself.
+
 ### v3.0.10
 
 * Render the component inside a div element when on inline mode [PR34](https://github.com/kadirahq/react-storybook-addon-info/pull/34)
