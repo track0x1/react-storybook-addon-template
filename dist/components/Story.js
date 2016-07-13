@@ -36,15 +36,9 @@ var _inherits2 = require('babel-runtime/helpers/inherits');
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
 var _extends2 = require('babel-runtime/helpers/extends');
 
 var _extends3 = _interopRequireDefault(_extends2);
-
-var _stylesheet;
 
 var _react = require('react');
 
@@ -83,7 +77,10 @@ _markdownToReactComponents2.default.configure({
   ul: _markdown.UL
 });
 
-var stylesheet = (_stylesheet = {
+var stylesheet = {
+  container: {
+    margin: '18px 18px 0 18px'
+  },
   link: {
     base: {
       fontFamily: 'sans-serif',
@@ -112,41 +109,43 @@ var stylesheet = (_stylesheet = {
     padding: '0 40px',
     overflow: 'auto'
   },
-  infoBody: {
-    fontSize: "16px"
-  }
-}, (0, _defineProperty3.default)(_stylesheet, 'infoBody', (0, _extends3.default)({}, _theme.baseFonts, {
-  fontWeight: 300,
-  lineHeight: 1.45,
-  fontSize: 15
-})), (0, _defineProperty3.default)(_stylesheet, 'infoContent', {
-  marginBottom: 0
-}), (0, _defineProperty3.default)(_stylesheet, 'header', {
-  h1: {
-    margin: '20px 0 0 0',
-    padding: 0,
-    fontSize: 35
+  infoBody: (0, _extends3.default)({}, _theme.baseFonts, {
+    fontWeight: 300,
+    lineHeight: 1.45,
+    fontSize: '16px'
+  }),
+  infoContent: {
+    marginBottom: 0
   },
-  h2: {
-    margin: '0 0 10px 0',
-    padding: 0,
-    fontWeight: 400,
-    fontSize: 22
+  header: {
+    h1: {
+      margin: '20px 0 0 0',
+      padding: 0,
+      fontSize: 35
+    },
+    h2: {
+      margin: '0 0 10px 0',
+      padding: 0,
+      fontWeight: 400,
+      fontSize: 22
+    },
+    body: {
+      borderBottom: '1px solid #eee',
+      marginBottom: 10
+    }
   },
-  body: {
-    borderBottom: '1px solid #eee',
-    marginBottom: 10
+  source: {
+    h1: {
+      margin: '20px 0 0 0',
+      padding: '0 0 5px 0',
+      fontSize: 25,
+      borderBottom: '1px solid #EEE'
+    }
+  },
+  propTableHead: {
+    margin: '20px 0 0 0'
   }
-}), (0, _defineProperty3.default)(_stylesheet, 'source', {
-  h1: {
-    margin: '20px 0 0 0',
-    padding: '0 0 5px 0',
-    fontSize: 25,
-    borderBottom: '1px solid #EEE'
-  }
-}), (0, _defineProperty3.default)(_stylesheet, 'propTableHead', {
-  margin: '20px 0 0 0'
-}), _stylesheet);
+};
 
 var Story = function (_React$Component) {
   (0, _inherits3.default)(Story, _React$Component);
@@ -188,10 +187,10 @@ var Story = function (_React$Component) {
     value: function _renderInline() {
       return _react2.default.createElement(
         'div',
-        null,
+        { style: stylesheet.container, className: 'storybook-template' },
         _react2.default.createElement(
           'div',
-          { style: stylesheet.infoPage },
+          { className: 'storybook-template__story-header', style: stylesheet.infoPage },
           _react2.default.createElement(
             'div',
             { style: stylesheet.infoBody },
@@ -200,12 +199,12 @@ var Story = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'storybook-template__story' },
           this._renderStory()
         ),
         _react2.default.createElement(
           'div',
-          { style: stylesheet.infoPage },
+          { className: 'storybook-template__story-info', style: stylesheet.infoPage },
           _react2.default.createElement(
             'div',
             { style: stylesheet.infoBody },
@@ -311,7 +310,7 @@ var Story = function (_React$Component) {
       }).join('\n');
       return _react2.default.createElement(
         'div',
-        { style: stylesheet.infoContent },
+        { className: 'storybook-template__story-info-content', style: stylesheet.infoContent },
         (0, _markdownToReactComponents2.default)(source).tree
       );
     }
@@ -324,7 +323,7 @@ var Story = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'storybook-template__story-info-source' },
         _react2.default.createElement(
           'h1',
           { style: stylesheet.source.h1 },
@@ -388,7 +387,7 @@ var Story = function (_React$Component) {
       var propTables = array.map(function (type, idx) {
         return _react2.default.createElement(
           'div',
-          { key: idx },
+          { className: 'storybook-template__story-info-props', key: idx },
           _react2.default.createElement(
             'h2',
             { style: stylesheet.propTableHead },
@@ -414,7 +413,6 @@ var Story = function (_React$Component) {
         ),
         propTables
       );
-      return;
     }
   }]);
   return Story;
@@ -435,5 +433,6 @@ Story.propTypes = {
 Story.defaultProps = {
   showInline: false,
   showHeader: true,
-  showSource: true
+  showSource: true,
+  propTables: false
 };
